@@ -268,7 +268,7 @@ return packer.startup(function(use)
   -- use "nvim-lua/lsp_extensions.nvim"
   -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
   -- use "stevearc/stickybuf.nvim"
-  -- use "folke/trouble.nvim"
+  use { "folke/trouble.nvim" }
   -- use "drybalka/tree-climber.nvim"
   -- use "phaazon/hop.nvim"
   -- use { "michaelb/sniprun", run = "bash ./install.sh" }
