@@ -3,8 +3,8 @@ M = {}
 local ui = vim.api.nvim_list_uis()[1]
 
 M.user_config = {
-  width = 40,
-  height = 10,
+  width = 140,
+  height = 30,
   style = "minimal",
   border = "rounded",
   -- anchor = "NW",

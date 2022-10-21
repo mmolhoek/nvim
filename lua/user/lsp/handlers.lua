@@ -7,7 +7,7 @@ if not status_cmp_ok then
   return
 end
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()
   local icons = require "user.icons"
@@ -110,13 +110,24 @@ M.on_attach = function(client, bufnr)
 
   if client.name == "tsserver" then
     require("lsp-inlayhints").on_attach(client, bufnr)
+    client.server_capabilities.document_formatting = true
   end
 
-  if client.name == "jdt.ls" then
+  if client.name == "jdtls" then
     vim.lsp.codelens.refresh()
     if JAVA_DAP_ACTIVE then
-      require("jdtls").setup_dap { hotcodereplace = "auto" }
-      require("jdtls.dap").setup_dap_main_class_configs()
+      local status, jdtls = pcall(require, "jdtls")
+      if not status then
+        vim.notify("handlers.lua: failed to require jdtls")
+        return
+      end
+      jdtls.setup_dap { hotcodereplace = "auto" }
+      local statusdap, jdtlsdap = pcall(require, "jdtls.dap")
+      if not statusdap then
+        vim.notify("handlers.lua: failed to require jdtls.dap")
+        return
+      end
+      jdtlsdap.setup_dap_main_class_configs()
     end
   end
 end
@@ -128,19 +139,21 @@ function M.enable_format_on_save()
       autocmd BufWritePre * lua vim.lsp.buf.format({ async = false }) 
     augroup end
   ]]
-  vim.notify "Enabled format on save"
+  vim.notify "handlers.lua: Enabled format on save"
 end
 
 function M.disable_format_on_save()
   M.remove_augroup "format_on_save"
-  vim.notify "Disabled format on save"
+  vim.notify "handlers.lua: Disabled format on save"
 end
 
 function M.toggle_format_on_save()
   if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+    vim.notify "handlers.lua: Enabled format on save"
     M.enable_format_on_save()
   else
     M.disable_format_on_save()
+    vim.notify "handlers.lua: Disabled format on save"
   end
 end
 

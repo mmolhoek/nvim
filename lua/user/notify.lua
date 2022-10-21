@@ -19,7 +19,7 @@ notify.setup {
   render = "default",
 
   -- Default timeout for notifications
-  timeout = 175,
+  timeout = 10000,
 
   -- For stages that change opacity this is treated as the highlight behind the window
   -- Set this to either a highlight group or an RGB hex value e.g. "#000000"
@@ -46,6 +46,12 @@ vim.notify = function(msg, ...)
     return
   end
   if msg:match "method textDocument" then
+    return
+  end
+  if msg:match "Requires TypeScript 4.4" then
+    return
+  end
+  if msg:match "No information available" then
     return
   end
 

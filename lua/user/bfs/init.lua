@@ -161,7 +161,7 @@ M.set_buffers = function(buf)
     local empty = {}
     empty[#empty + 1] = string.rep(" ", max_width)
     vim.api.nvim_buf_set_lines(buf, i - 1, -1, false, empty)
-    vim.api.nvim_buf_set_text(buf, i - 1, 0, i - 1, line:len(), { line })
+    vim.api.nvim_buf_set_text(buf, i - 1, 0, i - 1, max_width, { line })
     vim.api.nvim_buf_set_text(
       buf,
       i - 1,

@@ -1,3 +1,4 @@
+vim.g.python3_host_prog = '/usr/bin/python3'
 require "user.hot-reload"
 require "user.keymaps"
 require "user.plugins"

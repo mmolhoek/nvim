@@ -1,7 +1,7 @@
-vim.opt_local.shiftwidth = 2
-vim.opt_local.tabstop = 2
+-- vim.opt_local.shiftwidth = 2
+-- vim.opt_local.tabstop = 2
 vim.opt_local.cmdheight = 2 -- more space in the neovim command line for displaying messages
-
+local loglabel = debug.getinfo(1,'S').short_src:match("^.+/(.+)$") .. " "
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -9,7 +9,7 @@ if not status_cmp_ok then
   return
 end
 capabilities.textDocument.completion.completionItem.snippetSupport = false
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
@@ -19,21 +19,29 @@ end
 -- Determine OS
 local home = os.getenv "HOME"
 if vim.fn.has "mac" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/.java_workspaces/"
   CONFIG = "mac"
 elseif vim.fn.has "unix" == 1 then
-  WORKSPACE_PATH = home .. "/workspace/"
+  WORKSPACE_PATH = home .. "/.java_workspaces/"
   CONFIG = "linux"
 else
-  print "Unsupported system"
+  vim.notify(loglabel .. "Unsupported system")
+end
+
+local bla = os.execute(('[ -d "%s" ]'):format(WORKSPACE_PATH))
+if bla == "" then
+  vim.notify(loglabel .. "WORKSPACE directory not found:\n" .. WORKSPACE_PATH .. "\n" .. ". Please create ~/java_workspaces and restart vim to activate Java LSP")
+  return
 end
 
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
-local root_dir = require("jdtls.setup").find_root(root_markers)
+local root_dir = jdtls.setup.find_root(root_markers)
 if root_dir == "" then
+  vim.notify(loglabel .. "Found no root")
   return
 end
+
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
@@ -41,8 +49,8 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
-
--- TODO: Testing
+vim.notify(loglabel .. "storing workspace data in:\n" .. workspace_dir)
+vim.notify(loglabel .. "project root:\n" .. root_dir)
 
 JAVA_DAP_ACTIVE = true
 
@@ -66,11 +74,7 @@ local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
-
-    -- 💀
     "java", -- or '/path/to/java11_or_newer/bin/java'
-    -- depends on if `java` is in your $PATH env variable and if it points to the right version.
-
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -86,14 +90,15 @@ local config = {
 
     -- 💀
     "-jar",
-    vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    --vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
     -- 💀
     "-configuration",
-    home .. "/.local/share/nvim/lsp_servers/jdtls/config_" .. CONFIG,
+    home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. CONFIG,
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
     -- Must point to the                      Change to one of `linux`, `win` or `mac`
     -- eclipse.jdt.ls installation            Depending on your system.
@@ -211,10 +216,11 @@ vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_co
 vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
+
+ local status_ok, which_key = pcall(require, "which-key")
+ if not status_ok then
+   return
+ end
 
 local opts = {
   mode = "n", -- NORMAL mode

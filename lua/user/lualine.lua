@@ -23,7 +23,7 @@ local function contains(t, value)
 end
 
 local gray = "#32363e"
-local dark_gray = "#282C34"
+-- local dark_gray = "#282C34"
 local dark_gray = "#282C34"
 local red = "#D16969"
 local blue = "#569CD6"
@@ -31,8 +31,8 @@ local green = "#6A9955"
 local cyan = "#4EC9B0"
 local orange = "#CE9178"
 local indent = "#CE9178"
-local yellow = "#DCDCAA"
-local yellow_orange = "#D7BA7D"
+-- local yellow = "#DCDCAA"
+-- local yellow_orange = "#D7BA7D"
 local purple = "#C586C0"
 
 if lualine_scheme == "darkplus_dark" then
@@ -45,8 +45,8 @@ if lualine_scheme == "darkplus_dark" then
   green = "#A3BE8C"
   cyan = "#88c0d0"
   orange = "#C68A75"
-  yellow = "#DCDCAA"
-  yellow_orange = "#D7BA7D"
+  -- yellow = "#DCDCAA"
+  -- yellow_orange = "#D7BA7D"
   purple = "#B48EAD"
 end
 
@@ -151,9 +151,9 @@ local mode = {
   padding = 0,
 }
 
-local hide_in_width_60 = function()
-  return vim.o.columns > 60
-end
+-- local hide_in_width_60 = function()
+--   return vim.o.columns > 60
+-- end
 
 local hide_in_width = function()
   return vim.o.columns > 80
@@ -179,13 +179,13 @@ local diagnostics = {
   padding = 0,
 }
 
-local diff = {
-  "diff",
-  colored = false,
-  symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
-  cond = hide_in_width_60,
-  separator = "%#SLSeparator#" .. "│ " .. "%*",
-}
+-- local diff = {
+--   "diff",
+--   colored = false,
+--   symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
+--   cond = hide_in_width_60,
+--   separator = "%#SLSeparator#" .. "│ " .. "%*",
+-- }
 
 local filetype = {
   "filetype",
@@ -205,8 +205,8 @@ local filetype = {
       "nil",
     }
 
-    local return_val = function(str)
-      return hl_str(" ", "SLSep") .. hl_str(str, "SLFT") .. hl_str("", "SLSep")
+    local return_val = function(hlstr)
+      return hl_str(" ", "SLSep") .. hl_str(hlstr, "SLFT") .. hl_str("", "SLSep")
     end
 
     if str == "TelescopePrompt" then
@@ -257,7 +257,7 @@ local branch = {
 
 local progress = {
   "progress",
-  fmt = function(str)
+  fmt = function()
     -- return "▊"
     return hl_str("", "SLSep") .. hl_str("%P/%L", "SLProgress") .. hl_str(" ", "SLSep")
     -- return "  "
@@ -366,7 +366,7 @@ local lanuage_server = {
       end
     end
 
-    local clients = vim.lsp.buf_get_clients()
+    local clients = vim.lsp.get_active_clients()
     local client_names = {}
     local copilot_active = false
 

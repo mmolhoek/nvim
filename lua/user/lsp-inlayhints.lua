@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
   group = "LspAttach_inlayhints",
   callback = function(args)
@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require("lsp-inlayhints").on_attach(client, args.buf)
+    require("lsp-inlayhints").on_attach(client, args.buf, false)
   end,
 })
 

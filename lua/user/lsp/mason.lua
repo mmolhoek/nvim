@@ -16,7 +16,7 @@ local servers = {
   "jdtls",
   "jsonls",
   "solc",
-  "solidity_ls",
+  --"solidity_ls",
   "sumneko_lua",
   "tflint",
   "terraformls",
@@ -65,9 +65,10 @@ for _, server in pairs(servers) do
 
   server = vim.split(server, "@")[1]
 
+  -- vim.notify("mason.lua: server: " .. server)
   if server == "jsonls" then
     local jsonls_opts = require "user.lsp.settings.jsonls"
-    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+    -- opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
   end
 
   if server == "yamlls" then

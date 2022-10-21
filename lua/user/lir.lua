@@ -29,7 +29,7 @@ lir.setup {
     ["d"] = actions.delete,
 
     ["J"] = function()
-      mark_actions.toggle_mark()
+      mark_actions.toggle_mark('n')
       vim.cmd "normal! j"
     end,
     ["c"] = clipboard_actions.copy,
@@ -45,17 +45,11 @@ lir.setup {
 
     -- -- You can define a function that returns a table to be passed as the third
     -- -- argument of nvim_open_win().
-    win_opts = function()
-      local width = math.floor(vim.o.columns * 0.7)
-      local height = math.floor(vim.o.lines * 0.7)
-      return {
-        border = "rounded",
-        width = width,
-        height = height,
-        -- row = 1,
-        -- col = math.floor((vim.o.columns - width) / 2),
-      }
-    end,
+    win_opts = {
+      width = math.floor(vim.o.columns * 0.7),
+      height = math.floor(vim.o.lines * 0.7),
+      border = "rounded",
+    }
   },
   hide_cursor = false,
   on_init = function()
