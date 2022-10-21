@@ -49,8 +49,8 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
-vim.notify(loglabel .. "storing workspace data in:\n" .. workspace_dir)
-vim.notify(loglabel .. "project root:\n" .. root_dir)
+vim.notify_once(loglabel .. "storing workspace data in:\n" .. workspace_dir)
+vim.notify_once(loglabel .. "project root:\n" .. root_dir)
 
 JAVA_DAP_ACTIVE = true
 
