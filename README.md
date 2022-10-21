@@ -1,12 +1,21 @@
 # My Neovim Config
 
-## Try out this config
+A while back I started a new job at DPG (De PersGroep), a Belgian company as a Backend NodeJS developer. But they also asked me to write in java.
+At the company they all use IntelliJ, but I am used to Vim and wanted to see if it was possible to write and debug java with vim.
 
-Make sure to remove or move your current `nvim` directory
+After some research I found out that someone named [Christian Chiarulli](https://github.com/ChristianChiarulli/nvim) got java up and running in the latest Neovim
 
-```sh
-git clone git@github.com:ChristianChiarulli/nvim.git ~/.config/nvim
-```
+He has a [nice video](https://www.youtube.com/watch?v=0q_MKUynUck&ab_channel=chris%40machine) about how to set Java up in Neovim which you should have a look at.
+
+As I had not used Neovim before, being a vim user I decided this was the moment for me to switch to Neovim. I cloned [Christian Chiarulli](https://github.com/ChristianChiarulli/nvim)'s nvim config
+as it is the most complete version I could find (Thank you Christian!) and activated the java plugin as described in [his video](https://www.youtube.com/watch?v=0q_MKUynUck&ab_channel=chris%40machine).
+I also did some refactoring on the settings and added a [script](./osx_install_neovim_full.sh) that installs everything you need to get it working on OSX.
+
+btw, you need to have at a good shell (I use ZSH (brew install zsh), [Oh my ZSH](https://ohmyz.sh/) shell) and a good term (brew install iterm).
+
+to install on **OSX** just start a term and run ./osx_install_neovim_full.sh
+
+The script will move the current .config/nvim out of the way into a tempdir, clone this remove, and install a bunch of apps via brew you need
 
 Run `nvim` and wait for the plugins to be installed
 
@@ -20,72 +29,4 @@ Open `nvim` and enter the following:
 :checkhealth
 ```
 
-You'll probably notice you don't have support for copy/paste also that python and node haven't been setup
-
-So let's fix that
-
-First we'll fix copy/paste
-
-- On mac `pbcopy` should be builtin
-
-- On Ubuntu
-
-  ```sh
-  sudo apt install xsel
-  ```
-
-- On Arch Linux
-
-  ```sh
-  sudo pacman -S xsel
-  ```
-
-Next we need to install python support (node is optional)
-
-- Neovim python support
-
-  ```sh
-  pip install pynvim
-  ```
-
-- Neovim node support
-
-  ```sh
-  npm i -g neovim
-  ```
-
-## Fonts
-
-- [A nerd font](https://github.com/ryanoasis/nerd-fonts)
-
-- [codicon](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)
-- [An emoji font](https://github.com/googlefonts/noto-emoji/blob/main/fonts/NotoColorEmoji.ttf)
-
-After moving fonts to `~/.local/share/fonts/`
-
-Run: `$ fc-cache -f -v`
-
-**NOTE:** (If you are seeing boxes without icons, try changing this line from `false` to `true`: [link](https://github.com/ChristianChiarulli/nvim/blob/ac41efa237caf3a498077df19a3f31ca4b35caf3/lua/user/icons.lua#L5))
-
-## Java Debugging and Testing
-
-```sh
-git clone git@github.com:microsoft/java-debug.git
-cd java-debug/
-./mvnw clean install
-```
-
-```sh
-git clone git@github.com:microsoft/vscode-java-test.git
-cd vscode-java-test
-npm install
-npm run build-plugin
-```
-
-## Install latest rust-analyzer binary
-
-```sh
-$ mkdir -p ~/.local/bin
-$ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-$ chmod +x ~/.local/bin/rust-analyzer
-```
+make sure all is green and you will be ready to go
