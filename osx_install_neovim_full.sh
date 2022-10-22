@@ -9,7 +9,7 @@ else
 fi
 
 echo installing neovim and all needed packees via brew
-brew install neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl
+brew install neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl jesseduffield/lazygit/lazygit
 
 #Python
 echo installing python 3.10.7 via pyenv
@@ -46,7 +46,7 @@ fi
 echo installing java 17, change later if your want, use sdk env for that
 sdk install java 17.0.4-amzn
 
-echo in each project your should use `sdk use java 17.0.4-amzn` and `sdk env init`
+echo "in each project your should use **sdk use java 17.0.4-amzn** and **sdk env init**"
 
 echo installing java debugger
 pushd ~/.config/nvim || exit
@@ -64,3 +64,4 @@ popd || exit 1
 
 echo ready to go. run nvim and it will auto install a lot of packages the first time. let it install. on errors, quit rerun it until it is quit
 echo also test if :checkhealth reports all is fine. fix if not
+echo make sure you have selected a java version with sdk use java 17.0.4-amzn before you start nvim

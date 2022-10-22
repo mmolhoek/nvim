@@ -1,6 +1,7 @@
--- For copilot.vim
+-- For copilot.vim disable all but...
 -- vim.g.copilot_filetypes = {
 --   ["*"] = false,
+-- java =  true
 -- }
 
 -- vim.cmd [[
@@ -28,8 +29,16 @@ copilot.setup {
     settings = {
       advanced = {
         -- listCount = 10, -- #completions for panel
-        inlineSuggestCount = 3, -- #completions for getCompletions
+        inlineSuggestCount = 5, -- #completions for getCompletions
       },
     },
   },
 }
+-- change the highlight
+-- vim.cmd [[highlight Copilotsuggestion guifg=#8f8347 ctermfg=8]]
+vim.cmd [[imap <silent><script><expr> <S-n> copilot#Next()]]
+vim.cmd [[imap <silent><script><expr> <S-p> copilot#Previous()]]
+-- we do not want tab to accept as harpoon uses tab, use s-a
+vim.cmd [[imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")]]
+vim.g.copilot_no_tab_map = true
+
