@@ -21,7 +21,9 @@ pip3 install black flake8
 
 
 #nvm/npm
-if [[ ! $(which -s nvm) ]] ; then
+if [[ -f ~/.nvm/nvm.sh ]] ; then
+  . ~/.nvm/nvm.sh
+else
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 fi
 nvm install 16.18.0
