@@ -228,6 +228,14 @@ local mappings = {
 
   g = {
     name = "Git",
+    i = {
+      name = "Copilot AI",
+      a = { "", "<ctrl-a> accepts suggestion" },
+      n = { "", "<ctrl-Right> next suggestion" },
+      r = { "", "<ctrl-Left> previous suggestion" },
+      t = { "<cmd>Copilot toggle<cr>", "Toggle Copilot IA on / off" },
+      p = { "<cmd>Copilot panel<cr>", "Show Copilot panel" },
+    },
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -343,6 +351,8 @@ local mappings = {
     p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
     r = { "<cmd>TSToggle rainbow<cr>", "Rainbow" },
   },
+
+  C = { "<cmd>Copilot panel<cr>", "Show Copilot panel" },
 
   -- z = {
   --   name = "Zen",

@@ -224,6 +224,7 @@ return packer.startup(function(use)
 
   -- Java
   use "mfussenegger/nvim-jdtls"
+  use { "folke/trouble.nvim" }
 
   -- Rust
   use { "christianchiarulli/rust-tools.nvim", branch = "modularize_and_inlay_rewrite" }
@@ -245,8 +246,6 @@ return packer.startup(function(use)
   -- github copilot
 
   use { 'github/copilot.vim' }
- --excuberant ctags
-  -- use { 'ludovicchabant/vim-gutentags' }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"
@@ -274,7 +273,6 @@ return packer.startup(function(use)
   -- use "nvim-lua/lsp_extensions.nvim"
   -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
   -- use "stevearc/stickybuf.nvim"
-  use { "folke/trouble.nvim" }
   -- use "drybalka/tree-climber.nvim"
   -- use "phaazon/hop.nvim"
   -- use { "michaelb/sniprun", run = "bash ./install.sh" }
