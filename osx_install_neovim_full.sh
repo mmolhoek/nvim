@@ -2,10 +2,12 @@
 
 # check if brew is installed
 echo installing brew if needed otherwise update
-if [[ ! $(which -s brew) ]] ; then
+if [[ "$(which -s brew)" == "brew not found" ]] ; then
+    echo installing brew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-    echo brew update
+    brew update
+    brew upgrade
 fi
 
 echo installing neovim and all needed packees via brew
