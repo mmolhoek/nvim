@@ -1,6 +1,7 @@
 return {
   settings = {
     typescript = {
+      -- root_dir = function() return vim.loop.cwd() end,
       inlayHints = {
         includeInlayEnumMemberValueHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
