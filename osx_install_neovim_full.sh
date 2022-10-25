@@ -55,8 +55,8 @@ pushd ~/.config/nvim || exit
     sdk use java 17.0.4-amzn  
     .mvnw clean install
   popd || exit 1
+  git clone https://github.com/microsoft/vscode-java-test.git
   pushd vscode-java-test || exit
-    git clone https://github.com/microsoft/vscode-java-test.git
     npm i
     npm run build-plugin
   popd || exit 1
