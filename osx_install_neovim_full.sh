@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# check if xcode-tools are installed
+if [ "$(xcode-select --version)" == "" ]; then
+  echo installing xcode tools
+  xcode-select --install
+fi
 # check if brew is installed
 echo installing brew if needed otherwise update
 if [[ "$(which -s brew)" == "brew not found" ]] ; then
@@ -10,8 +15,8 @@ else
     brew upgrade
 fi
 
-echo installing neovim and all needed packees via brew
-brew install neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl jesseduffield/lazygit/lazygit
+echo installing neovim and all needed packeges via brew
+brew install git neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl jesseduffield/lazygit/lazygit
 
 #Python
 echo installing python 3.10.7 via pyenv
@@ -47,6 +52,9 @@ if [[ ! $(which -s sdk) ]] ; then
   echo installing sdk man to install java version
   curl -s "https://get.sdkman.io" | bash
 fi
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 echo installing java 17, change later if your want, use sdk env for that
 sdk install java 17.0.4-amzn
 
@@ -54,17 +62,34 @@ echo "in each project your should use **sdk use java 17.0.4-amzn** and **sdk env
 
 echo installing java debugger
 pushd ~/.config/nvim || exit
-  git clone https://github.com/microsoft/java-debug.git
+  if [ ! -d "java-debug" ]; then
+    git clone -q https://github.com/microsoft/java-debug.git
+  fi
   pushd java-debug || exit
+    git pull
     sdk use java 17.0.4-amzn  
     .mvnw clean install
   popd || exit 1
-  git clone https://github.com/microsoft/vscode-java-test.git
+  if [ ! -d "vscode-java-test" ]; then
+    git clone -q https://github.com/microsoft/vscode-java-test.git
+  fi
   pushd vscode-java-test || exit
+    git pull
     npm i
     npm run build-plugin
   popd || exit 1
 popd || exit 1
+
+echo adding tags to global gitignore
+
+if [ -f "$HOME/.gitignore" ]; then
+  if ! grep -q tags "$HOME/.gitignore"; then
+    echo "tags*" >> ~/.gitignore
+  fi
+else
+  printf "node_modules\ntags*\n" > ~/.gitignore
+fi
+git config --global core.excludesfile ~/.gitignore
 
 echo ready to go. run nvim and it will auto install a lot of packages the first time. let it install. on errors, quit rerun it until it is quit
 echo also test if :checkhealth reports all is fine. fix if not
