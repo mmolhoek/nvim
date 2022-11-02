@@ -65,7 +65,6 @@ return packer.startup(function(use)
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
-  -- use "github/copilot.vim"
   use {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
