@@ -59,6 +59,8 @@ return packer.startup(function(use)
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- Editorconfig, is also used by prettier
+  use { 'editorconfig/editorconfig-vim' }
   use "ray-x/lsp_signature.nvim"
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
@@ -240,8 +242,6 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
-  -- Editorconfig
-  use { 'editorconfig/editorconfig-vim' }
 
   -- github copilot
 
