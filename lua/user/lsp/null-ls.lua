@@ -18,7 +18,8 @@ null_ls.setup {
   sources = {
      formatting.prettier.with {
       extra_filetypes = { "toml", "solidity" },
-      extra_args = { "--single-quote", "--jsx-single-quote", "--trailing-comma es5", "--no-semi true" },
+        -- these should come from editorconfig, see 'editorconfig/editorconfig-vim'
+        -- extra_args = { "--single-quote", "--jsx-single-quote", "--trailing-comma es5", "--no-semi true" },
     },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
@@ -34,7 +35,7 @@ local unwrap = {
   filetypes = { "rust" },
   generator = {
     fn = function(params)
-      local diagnostics = {}
+      local diags = {}
       -- sources have access to a params object
       -- containing info about the current file and editor state
       for i, line in ipairs(params.content) do
@@ -42,7 +43,7 @@ local unwrap = {
         if col and end_col then
           -- null-ls fills in undefined positions
           -- and converts source diagnostics into the required format
-          table.insert(diagnostics, {
+          table.insert(diags, {
             row = i,
             col = col,
             end_col = end_col,
@@ -52,7 +53,7 @@ local unwrap = {
           })
         end
       end
-      return diagnostics
+      return diags
     end,
   },
 }
