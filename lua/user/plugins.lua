@@ -79,7 +79,8 @@ return packer.startup(function(use)
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
-  use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+  -- use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+  use "Maan2003/lsp_lines.nvim"
 
   -- Completion
   use "christianchiarulli/nvim-cmp"
