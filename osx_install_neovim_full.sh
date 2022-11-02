@@ -16,7 +16,7 @@ else
 fi
 
 echo installing neovim and all needed packeges via brew
-brew install git neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl jesseduffield/lazygit/lazygit
+brew install git neovim stylua pyenv pyenv-virtualenv ninja libtool automake cmake pkg-config gettext curl ripgrep fd gnu-sed shellcheck shfmt zk curl jesseduffield/lazygit/lazygit rome
 echo "alias ls='lazygit'" >> "$HOME"/.zshrc
 alias ls='lazygit'
 
