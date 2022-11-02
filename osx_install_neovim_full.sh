@@ -49,13 +49,13 @@ nvm use 16.18.0
 npm install -g neovim prettier coc-java-lombok ls_emmet
 
 # get 
-if [ -d ~/config/nvim ]; then
-  TEMPDIR=$(mktemp -d  ~/.config/nvim.bkXXXX)
-  echo moving old nvim dir to "$TEMPDIR"
-  mv ~/config/nvim "$TEMPDIR"
-fi
-echo getting nvim from github/mmolhoek
-git clone https://github.com/mmolhoek/nvim.git ~/.config/nvim
+# if [ -d ~/config/nvim ]; then
+#   TEMPDIR=$(mktemp -d  ~/.config/nvim.bkXXXX)
+#   echo moving old nvim dir to "$TEMPDIR"
+#   mv ~/config/nvim "$TEMPDIR"
+# fi
+# echo getting nvim from github/mmolhoek
+# git clone https://github.com/mmolhoek/nvim.git ~/.config/nvim
 
 # java
 echo creating the workspace folder for java in ~/.java_workspaces/
