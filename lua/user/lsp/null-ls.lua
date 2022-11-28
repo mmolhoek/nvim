@@ -12,15 +12,14 @@ local diagnostics = null_ls.builtins.diagnostics
 -- npm install --save-dev prettier prettier-plugin-solidity
 
 -- require("null-ls").disable({"prettier"})
+-- prettier is implecitly loaded via eslint_d plugin. eslintrc.js in your project
+-- is the place to include prettier. see:
+-- https://medium.com/@jimeno0/eslint-and-prettier-in-vim-neovim-7e45f85cf8f9
 
 null_ls.setup {
   debug = false,
   sources = {
-     formatting.prettier.with {
-      extra_filetypes = { "toml", "solidity" },
-        -- these should come from editorconfig, see 'editorconfig/editorconfig-vim'
-        -- extra_args = { "--single-quote", "--jsx-single-quote", "--trailing-comma es5", "--no-semi true" },
-    },
+    formatting.eslint_d,
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     formatting.shfmt,
