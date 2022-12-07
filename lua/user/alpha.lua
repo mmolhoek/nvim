@@ -25,6 +25,8 @@ dashboard.section.buttons.val = {
   -- dashboard.button("s", icons.ui.SignIn .. " Find Session", ":silent Autosession search <CR>"),
   button("s", icons.ui.SignIn .. " Find Session", ":SearchSession<CR>"),
   button("c", icons.ui.Gear .. " Config", ":e ~/.config/nvim/init.lua <CR>"),
+  button("k", icons.ui.CloudDownload .. " Sync knowledgebase to pi", ":!rsync -a /Users/molhoe000/Projects/knowledgebase pi:<CR>"),
+  button("v", icons.ui.CloudDownload .. " Sync nvim config to pi", ":!rsync -a /Users/molhoe000/.config/nvim pi:.config/<CR>"),
   button("u", icons.ui.CloudDownload .. " Update", ":PackerSync<CR>"),
   button("q", icons.ui.SignOut .. " Quit", ":qa<CR>"),
 }
