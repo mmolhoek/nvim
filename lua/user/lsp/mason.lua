@@ -27,7 +27,7 @@ local servers = {
   "clangd",
   "rust_analyzer",
   "taplo",
-  "zk@v0.10.1",
+  -- "zk@v0.10.1",
   "lemminx"
 }
 
@@ -117,10 +117,11 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
   end
 
-  if server == "zk" then
-    local zk_opts = require "user.lsp.settings.zk"
-    opts = vim.tbl_deep_extend("force", zk_opts, opts)
-  end
+  -- note taking tool, not used anymore
+  -- if server == "zk" then
+  --   local zk_opts = require "user.lsp.settings.zk"
+  --   opts = vim.tbl_deep_extend("force", zk_opts, opts)
+  -- end
 
   if server == "jdtls" then
     -- skip as handlers.lua is dealing with this

@@ -122,7 +122,7 @@ return packer.startup(function(use)
   use "tom-anders/telescope-vim-bookmarks.nvim"
 
   -- Note Taking
-  use "mickael-menu/zk-nvim"
+  -- use "mickael-menu/zk-nvim"
 
   -- Color
   use "NvChad/nvim-colorizer.lua"
