@@ -16,17 +16,31 @@ local diagnostics = null_ls.builtins.diagnostics
 -- is the place to include prettier. see:
 -- https://medium.com/@jimeno0/eslint-and-prettier-in-vim-neovim-7e45f85cf8f9
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup {
-  debug = false,
-  sources = {
-    formatting.eslint_d,
-    formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
-    formatting.shfmt,
-    formatting.google_java_format,
-    -- diagnostics.flake8,
-    diagnostics.shellcheck,
-  },
+    debug = false,
+    sources = {
+        formatting.eslint_d,
+        formatting.black.with { extra_args = { "--fast" } },
+        formatting.stylua,
+        formatting.shfmt,
+        -- formatting.google_java_format, //not used anymore, using format in ftplugin/java.lua
+        -- diagnostics.flake8,
+        diagnostics.shellcheck,
+    },
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                   vim.lsp.buf.format({ bufnr = bufnr })
+                end,
+            })
+        end
+    end,
 }
 
 local unwrap = {

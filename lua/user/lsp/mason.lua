@@ -123,6 +123,7 @@ for _, server in pairs(servers) do
   end
 
   if server == "jdtls" then
+    -- skip as handlers.lua is dealing with this
     goto continue
   end
 

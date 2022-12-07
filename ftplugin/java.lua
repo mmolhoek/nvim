@@ -37,8 +37,8 @@ end
 -- Find root of project
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = jdtls.setup.find_root(root_markers)
-if root_dir == "" then
-  vim.notify(loglabel .. "Found no root")
+if root_dir == "" or root_dir == nil then
+  vim.notify(loglabel .. "Found no root or you are in diff")
   return
 end
 
@@ -51,6 +51,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 vim.notify_once(loglabel .. "storing workspace data in:\n" .. workspace_dir)
 vim.notify_once(loglabel .. "project root:\n" .. root_dir)
+vim.notify_once("do not forget to clean and build so it can find the depending jars")
 
 JAVA_DAP_ACTIVE = true
 
@@ -152,10 +153,11 @@ local config = {
         },
       },
       format = {
-        enabled = false,
-        -- settings = {
-        --   profile = "asdf"
-        -- }
+        enabled = true,
+        settings = {
+          url = home .. "/.config/nvim/configs/intellij-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
       },
     },
     signatureHelp = { enabled = true },
