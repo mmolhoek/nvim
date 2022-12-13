@@ -54,13 +54,19 @@ return packer.startup(function(use)
   use "christianchiarulli/lua-dev.nvim"
   -- use "folke/lua-dev.nvim"
 
+  -- rest
+  use {
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  }
+
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   -- Editorconfig, is also used by prettier
-  use { 'editorconfig/editorconfig-vim' }
+  use { "editorconfig/editorconfig-vim" }
   use "ray-x/lsp_signature.nvim"
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
@@ -98,7 +104,7 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Syntax/Treesitter
-  use {"nvim-treesitter/nvim-treesitter", commit = "4cccb6f494eb255b32a290d37c35ca12584c74d0"}
+  use { "nvim-treesitter/nvim-treesitter", commit = "4cccb6f494eb255b32a290d37c35ca12584c74d0" }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
@@ -242,10 +248,9 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
-
   -- github copilot
 
-  use { 'github/copilot.vim' }
+  use { "github/copilot.vim" }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"

@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python3_host_prog = "/usr/bin/python3"
 vim.o.relativenumber = true
 require "user.hot-reload"
 require "user.keymaps"
@@ -61,3 +61,4 @@ require "user.harpoon"
 require "user.lab"
 require "user.vim-slash"
 require "user.copilot"
+require "user.rest"
