@@ -11,24 +11,24 @@ end
 local servers = {
   "cssls",
   "cssmodules_ls",
-  "emmet_ls",
+  "emmet_ls", --html redering via shortcuts: https://github.com/emmetio/emmet
   "html",
-  "jdtls",
+  "jdtls", --java
   "jsonls",
-  "solc",
+  -- "solc",
   --"solidity_ls",
   "sumneko_lua",
-  "tflint",
-  "terraformls",
+  "tflint", -- terraform
+  "terraformls", -- terraform
   "tsserver",
   "pyright",
   "yamlls",
   "bashls",
-  "clangd",
-  "rust_analyzer",
-  "taplo",
+  -- "clangd",
+  -- "rust_analyzer",
+  -- "taplo",
   -- "zk@v0.10.1",
-  "lemminx"
+  "lemminx", -- xml lsp
 }
 
 local settings = {
@@ -68,7 +68,7 @@ for _, server in pairs(servers) do
   -- vim.notify("mason.lua: server: " .. server)
   if server == "jsonls" then
     local jsonls_opts = require "user.lsp.settings.jsonls"
-    -- opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+    opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
   end
 
   if server == "yamlls" then
@@ -107,10 +107,10 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server == "solc" then
-    local solc_opts = require "user.lsp.settings.solc"
-    opts = vim.tbl_deep_extend("force", solc_opts, opts)
-  end
+  -- if server == "solc" then
+  --   local solc_opts = require "user.lsp.settings.solc"
+  --   opts = vim.tbl_deep_extend("force", solc_opts, opts)
+  -- end
 
   if server == "emmet_ls" then
     local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
@@ -128,17 +128,17 @@ for _, server in pairs(servers) do
     goto continue
   end
 
-  if server == "rust_analyzer" then
-    local rust_opts = require "user.lsp.settings.rust"
-    -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
-    local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
-    if not rust_tools_status_ok then
-      return
-    end
+  --   if server == "rust_analyzer" then
+  --     local rust_opts = require "user.lsp.settings.rust"
+  --     -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
+  --     local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
+  --     if not rust_tools_status_ok then
+  --       return
+  --     end
 
-    rust_tools.setup(rust_opts)
-    goto continue
-  end
+  --     rust_tools.setup(rust_opts)
+  --     goto continue
+  --   end
 
   lspconfig[server].setup(opts)
   ::continue::
