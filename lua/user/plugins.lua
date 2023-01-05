@@ -147,7 +147,11 @@ return packer.startup(function(use)
   use "ghillb/cybu.nvim"
   use "moll/vim-bbye"
   use "lewis6991/impatient.nvim"
-  use "lalitmee/browse.nvim"
+  -- devdocs.io
+  use {
+    "lalitmee/browse.nvim",
+    requires = { "nvim-telescope/telescope.nvim" },
+  }
 
   -- Registers
   use "tversteeg/registers.nvim"
