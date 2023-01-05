@@ -1,7 +1,7 @@
 -- vim.opt_local.shiftwidth = 2
 -- vim.opt_local.tabstop = 2
 vim.opt_local.cmdheight = 2 -- more space in the neovim command line for displaying messages
-local loglabel = debug.getinfo(1,'S').short_src:match("^.+/(.+)$") .. " "
+local loglabel = debug.getinfo(1, "S").short_src:match "^.+/(.+)$" .. " "
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -30,7 +30,13 @@ end
 
 local bla = os.execute(('[ -d "%s" ]'):format(WORKSPACE_PATH))
 if bla == "" then
-  vim.notify(loglabel .. "WORKSPACE directory not found:\n" .. WORKSPACE_PATH .. "\n" .. ". Please create ~/java_workspaces and restart vim to activate Java LSP")
+  vim.notify(
+    loglabel
+      .. "WORKSPACE directory not found:\n"
+      .. WORKSPACE_PATH
+      .. "\n"
+      .. ". Please create ~/java_workspaces and restart vim to activate Java LSP"
+  )
   return
 end
 
@@ -42,7 +48,6 @@ if root_dir == "" or root_dir == nil then
   return
 end
 
-
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
@@ -51,7 +56,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 vim.notify_once(loglabel .. "storing workspace data in:\n" .. workspace_dir)
 vim.notify_once(loglabel .. "project root:\n" .. root_dir)
-vim.notify_once("do not forget to clean and build so it can find the depending jars")
+vim.notify_once "do not forget to clean and build so it can find the depending jars"
 
 JAVA_DAP_ACTIVE = true
 
@@ -218,11 +223,10 @@ vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_co
 vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
-
- local status_ok, which_key = pcall(require, "which-key")
- if not status_ok then
-   return
- end
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  return
+end
 
 local opts = {
   mode = "n", -- NORMAL mode
@@ -247,10 +251,11 @@ local mappings = {
     name = "Java",
     o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
     v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
-    c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
-    t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
-    T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
-    u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+    C = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
+    m = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
+    c = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
+    r = { "<Cmd>DapToggleRepl<CR>", "Toggle Dap Repl" },
+    u = { "<Cmd>JdtUpdateConfig<CR>", "Update Java Config" },
   },
 }
 
