@@ -60,6 +60,18 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
+  use {
+    "wiliamks/nice-reference.nvim",
+    requires = {
+      "kyazdani42/nvim-web-devicons", --optional
+      {
+        "rmagatti/goto-preview",
+        config = function()
+          require("goto-preview").setup {}
+        end,
+      }, --optional
+    },
+  }
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim"

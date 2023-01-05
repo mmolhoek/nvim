@@ -353,7 +353,10 @@ local mappings = {
   },
 
   C = { "<cmd>Copilot panel<cr>", "Show Copilot panel" },
-  R = {
+
+  R = { "<cmd>lua require('nice-reference').references()<CR>", "References" },
+
+  u = {
     name = "Rest calls",
     r = { "<Plug>RestNvim<cr>", "Call rest endpoint" },
     c = { "<Plug>RestNvimPreview<cr>", "Copy Curl to CB" },
