@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.python3_host_prog = "/Users/molhoe000/.pyenv/shims/python"
 vim.o.relativenumber = true
 require "user.hot-reload"
 require "user.keymaps"
