@@ -425,6 +425,17 @@ local lanuage_server = {
   -- separator = "%#SLSeparator#" .. " │" .. "%*",
 }
 
+local filename = {
+  "filename",
+  fmt = function(str)
+    -- return "▊"
+    return hl_str(" ", "SLSep")
+      .. hl_str(vim.api.nvim_buf_get_name(0):gsub(vim.env.HOME, "~"), "SLBranchName")
+      .. hl_str(" ", "SLSep")
+    -- return "  "
+  end,
+  padding = 0,
+}
 local location = {
   "location",
   fmt = function(str)
@@ -449,8 +460,8 @@ lualine.setup {
   sections = {
     lualine_a = { left_pad, mode, branch, right_pad },
     lualine_b = { left_pad_alt, diagnostics, right_pad_alt },
-    -- lualine_c = {},
-    lualine_c = { current_signature },
+    lualine_c = { filename },
+    lualine_d = { current_signature },
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
