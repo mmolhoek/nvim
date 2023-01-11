@@ -170,6 +170,7 @@ return packer.startup(function(use)
 
   -- Icon
   use "kyazdani42/nvim-web-devicons"
+  use "mortepau/codicons.nvim"
 
   -- Debugging
   use "mfussenegger/nvim-dap"
