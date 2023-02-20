@@ -80,7 +80,10 @@ return packer.startup(function(use)
   -- Editorconfig, is also used by prettier
   use { "editorconfig/editorconfig-vim" }
   use "ray-x/lsp_signature.nvim"
-  use "SmiteshP/nvim-navic"
+  use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig",
+  }
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
   use {
