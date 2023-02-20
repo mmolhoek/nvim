@@ -17,7 +17,8 @@ local servers = {
   "jsonls",
   -- "solc",
   --"solidity_ls",
-  "sumneko_lua",
+  -- "sumneko_lua",
+  "lua_ls",
   "tflint", -- terraform
   "terraformls", -- terraform
   "tsserver",
@@ -76,7 +77,7 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
   end
 
-  if server == "sumneko_lua" then
+  if server == "lua_ls" then
     local l_status_ok, lua_dev = pcall(require, "lua-dev")
     if not l_status_ok then
       return
@@ -93,7 +94,7 @@ for _, server in pairs(servers) do
         --   -- settings = opts.settings,
       },
     }
-    lspconfig.sumneko_lua.setup(luadev)
+    lspconfig.lua_ls.setup(luadev)
     goto continue
   end
 
