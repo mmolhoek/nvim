@@ -41,4 +41,3 @@ vim.cmd [[imap <silent><script><expr> <S-Left> copilot#Previous()]]
 -- we do not want tab to accept as harpoon uses tab, use s-a
 vim.cmd [[imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")]]
 vim.g.copilot_no_tab_map = true
-

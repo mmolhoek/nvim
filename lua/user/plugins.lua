@@ -85,13 +85,21 @@ return packer.startup(function(use)
   use "b0o/SchemaStore.nvim"
   use {
     "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
+    cmd = "Copilot",
+    event = "InsertEnter",
     config = function()
-      vim.defer_fn(function()
-        require "user.copilot"
-      end, 100)
+      require("copilot").setup {}
     end,
   }
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require "user.copilot"
+  --     end, 100)
+  --   end,
+  -- }
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
@@ -268,7 +276,7 @@ return packer.startup(function(use)
 
   -- github copilot
 
-  use { "github/copilot.vim" }
+  -- use { "github/copilot.vim" }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"
