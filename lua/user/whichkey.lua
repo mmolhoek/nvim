@@ -135,6 +135,7 @@ local mappings = {
 
   B = {
     name = "Browse",
+    B = { "<cmd>BookmarkShowAll<cr>", "Bookmarks" },
     i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
     b = { "<cmd>Browse<cr>", "Browse" },
     d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
