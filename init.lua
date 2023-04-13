@@ -1,5 +1,6 @@
 vim.g.python3_host_prog = "/Users/molhoe000/.pyenv/shims/python"
 vim.o.relativenumber = true
+vim.g.markdown_fenced_languages = { "javascript", "typescript", "css", "html" }
 require "user.hot-reload"
 require "user.keymaps"
 require "user.plugins"
