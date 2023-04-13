@@ -9,13 +9,13 @@ function M.setKeymaps(win, buf)
     string.format([[:<C-U>lua require'user.bfs'.selBufNum(%s, 'window', vim.v.count)<CR>]], win),
     { nowait = true, noremap = true, silent = true }
   )
-  vim.api.nvim_buf_set_keymap(
-    buf,
-    "n",
-    "q",
-    ':lua require"user.bfs".close()<CR>',
-    { nowait = true, noremap = true, silent = true }
-  )
+  -- vim.api.nvim_buf_set_keymap(
+  --   buf,
+  --   "n",
+  --   "q",
+  --   ':lua require"user.bfs".close()<CR>',
+  --   { nowait = true, noremap = true, silent = true }
+  -- )
   vim.api.nvim_buf_set_keymap(
     buf,
     "n",

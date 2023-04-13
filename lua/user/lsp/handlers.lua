@@ -73,7 +73,6 @@ M.setup = function()
   })
 end
 
-
 local function attach_navic(client, bufnr)
   vim.g.navic_silence = true
   local status_ok, navic = pcall(require, "nvim-navic")
@@ -118,13 +117,13 @@ M.on_attach = function(client, bufnr)
     if JAVA_DAP_ACTIVE then
       local status, jdtls = pcall(require, "jdtls")
       if not status then
-        vim.notify("handlers.lua: failed to require jdtls")
+        vim.notify "handlers.lua: failed to require jdtls"
         return
       end
       jdtls.setup_dap { hotcodereplace = "auto" }
       local statusdap, jdtlsdap = pcall(require, "jdtls.dap")
       if not statusdap then
-        vim.notify("handlers.lua: failed to require jdtls.dap")
+        vim.notify "handlers.lua: failed to require jdtls.dap"
         return
       end
       jdtlsdap.setup_dap_main_class_configs()

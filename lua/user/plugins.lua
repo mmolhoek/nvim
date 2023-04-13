@@ -60,6 +60,15 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
+  --refactoring
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  }
+
   use {
     "wiliamks/nice-reference.nvim",
     requires = {
@@ -187,6 +196,18 @@ return packer.startup(function(use)
   -- Debugging
   use "mfussenegger/nvim-dap"
   use "rcarriga/nvim-dap-ui"
+  use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+
+  -- Testing
+  use "antoinemadec/FixCursorHold.nvim"
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  }
   -- use "theHamsta/nvim-dap-virtual-text"
   -- use "Pocco81/DAPInstall.nvim"
 
@@ -277,9 +298,15 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
-  -- github copilot
+  use "junegunn/vim-easy-align"
 
-  -- use { "github/copilot.vim" }
+  -- Flow support (https://flow.org/en/docs/editors/vim/)
+  use {
+    "autozimu/LanguageClient-neovim",
+    autoload = {
+      filetypes = "javascript",
+    },
+  }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"

@@ -96,7 +96,7 @@ keymap("v", "p", '"_dP', opts)
 -- keymap("n", "<c-h>", "<cmd>nohlsearch<cr>", opts)
 -- NOTE: the fact that tab and ctrl-i are the same is stupid
 -- keymap("n", "<TAB>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+-- keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
 keymap("n", "<F1>", ":e ~/Notes/<cr>", opts)
 keymap("n", "<F3>", ":e .<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)

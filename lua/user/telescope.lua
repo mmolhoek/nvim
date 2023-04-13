@@ -126,7 +126,7 @@ telescope.setup {
         ["H"] = actions.move_to_top,
         ["M"] = actions.move_to_middle,
         ["L"] = actions.move_to_bottom,
-        ["q"] = actions.close,
+        -- ["q"] = actions.close,
         ["dd"] = require("telescope.actions").delete_buffer,
         ["s"] = actions.select_horizontal,
         ["v"] = actions.select_vertical,
@@ -187,7 +187,6 @@ telescope.setup {
       theme = "dropdown",
       initial_mode = "normal",
     },
-
 
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {

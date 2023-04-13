@@ -41,6 +41,7 @@ local settings = {
       package_uninstalled = "◍",
     },
   },
+  PATH = "prepend",
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
 }
