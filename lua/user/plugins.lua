@@ -307,6 +307,7 @@ return packer.startup(function(use)
       filetypes = "javascript",
     },
   }
+  use "michaelb/vim-tips"
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"
