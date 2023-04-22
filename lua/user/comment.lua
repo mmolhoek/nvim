@@ -8,10 +8,16 @@ if not status_ok_1 then
   return
 end
 
+local commentString, _ = pcall(require, "ts_context_commentstring.internal")
+if not commentString then
+  return
+end
+
 comment.setup {
   ignore = "^$",
   pre_hook = function(ctx)
     -- For inlay hints
+    --  fix below line
     local line_start = (ctx.srow or ctx.range.srow) - 1
     local line_end = ctx.erow or ctx.range.erow
     require("lsp-inlayhints.core").clear(0, line_start, line_end)
@@ -32,10 +38,11 @@ comment.setup {
         location = require("ts_context_commentstring.utils").get_visual_start_location()
       end
 
-      return require("ts_context_commentstring.internal").calculate_commentstring {
+      return commentString.calculate_commentstring {
         key = type,
         location = location,
       }
     end
+    return ""
   end,
 }
