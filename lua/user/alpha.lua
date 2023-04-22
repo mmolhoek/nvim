@@ -38,19 +38,19 @@ dashboard.section.buttons.val = {
   button("u", icons.ui.CloudDownload .. " Update", ":PackerSync<CR>"),
   button("q", icons.ui.SignOut .. " Quit", ":qa<CR>"),
 }
-local function footer()
-  -- NOTE: requires the fortune-mod package to work
-  local handle = io.popen "fortune"
-  if handle == nil then
-    return "Mischa Molhoek"
-  else
-    local fortune = handle:read "*a"
-    handle:close()
-    return fortune
-  end
-end
+-- local function footer()
+--   -- NOTE: requires the fortune-mod package to work
+--   local handle = io.popen "fortune"
+--   if handle == nil then
+--     return "Mischa Molhoek"
+--   else
+--     local fortune = handle:read "*a"
+--     handle:close()
+--     return fortune
+--   end
+-- end
 
-dashboard.section.footer.val = footer()
+-- dashboard.section.footer.val = footer()
 
 dashboard.section.header.opts.hl = "Include"
 dashboard.section.buttons.opts.hl = "Macro"
