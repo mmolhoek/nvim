@@ -1,6 +1,7 @@
 vim.g.python3_host_prog = "/Users/molhoe000/.pyenv/shims/python"
 vim.o.relativenumber = true
 vim.g.markdown_fenced_languages = { "javascript", "typescript", "css", "html" }
+vim.g.tags = "tags"
 
 -- make pressing jk and kj be escape so your findgers do not move from keyboard
 vim.keymap.set("i", "jk", "<Esc>", options)

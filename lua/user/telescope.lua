@@ -203,5 +203,23 @@ telescope.setup {
       filetypes = { "png", "webp", "jpg", "jpeg" },
       find_cmd = "rg", -- find command (defaults to `fd`)
     },
+    ctags_outline = {
+      --ctags option
+      ctags = { "ctags" },
+      --ctags filetype option
+      ft_opt = {
+        vim = "--vim-kinds=fk",
+        lua = "--lua-kinds=fk",
+      },
+    },
   },
 }
+
+-- require('telescope').load_extension('ctags_outline')
+
+-- show current buf outline
+-- require('telescope').extensions.ctags_outline.outline()
+-- :Telescope ctags_outline outline
+
+-- show all opened buf outline(use current buf filetype)
+-- require('telescope').extensions.ctags_outline.outline({buf='all'})
