@@ -31,17 +31,17 @@ if not status_ok then
 end
 
 -- Have packer use a popup window
-packer.init {
-  -- snapshot = "july-24",
-  snapshot_path = fn.stdpath "config" .. "/snapshots",
-  max_jobs = 50,
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-    prompt_border = "rounded", -- Border style of prompt popups.
-  },
-}
+-- packer.init {
+--   -- snapshot = "july-24",
+--   snapshot_path = fn.stdpath "config" .. "/snapshots",
+--   max_jobs = 50,
+--   display = {
+--     open_fn = function()
+--       return require("packer.util").float { border = "rounded" }
+--     end,
+--     prompt_border = "rounded", -- Border style of prompt popups.
+--   },
+-- }
 
 -- Install your plugins here
 return packer.startup(function(use)
