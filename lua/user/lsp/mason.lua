@@ -11,7 +11,7 @@ end
 local servers = {
   "cssls",
   "cssmodules_ls",
-  "emmet_ls", --html redering via shortcuts: https://github.com/emmetio/emmet
+  -- "emmet_ls", --html redering via shortcuts: https://github.com/emmetio/emmet
   "html",
   "jdtls", --java
   "jsonls",
@@ -60,6 +60,7 @@ end
 local opts = {}
 
 for _, server in pairs(servers) do
+  -- vim.notify_once("loading " .. server)
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
@@ -114,10 +115,10 @@ for _, server in pairs(servers) do
   --   opts = vim.tbl_deep_extend("force", solc_opts, opts)
   -- end
 
-  if server == "emmet_ls" then
-    local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
-    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
-  end
+  -- if server == "emmet_ls" then
+  -- local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
+  -- opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+  -- end
 
   -- note taking tool, not used anymore
   -- if server == "zk" then
