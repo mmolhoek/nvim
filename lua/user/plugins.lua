@@ -81,7 +81,7 @@ return packer.startup(function(use)
       }, --optional
     },
   }
-  -- LSP
+  -- Language Server Protocol
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
@@ -95,23 +95,23 @@ return packer.startup(function(use)
   }
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
+  -- use {
+  --    "zbirenbaum/copilot.lua",
+  --    cmd = "Copilot",
+  --    event = "VimEnter",
+  --    config = function()
+  --      require("copilot").setup {}
+  --     end,
+  --   }
   use {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    event = { "VimEnter" },
     config = function()
-      require("copilot").setup {}
+      vim.defer_fn(function()
+        require "user.copilot"
+      end, 100)
     end,
   }
-  -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = { "VimEnter" },
-  --   config = function()
-  --     vim.defer_fn(function()
-  --       require "user.copilot"
-  --     end, 100)
-  --   end,
-  -- }
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
@@ -128,7 +128,13 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
-  use "zbirenbaum/copilot-cmp"
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  }
   -- use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- Snippet

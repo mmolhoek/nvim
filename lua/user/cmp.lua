@@ -101,6 +101,9 @@ cmp.setup {
     ["<CR>"] = cmp.mapping.confirm { select = false },
     ["<Right>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
+      -- if cmp.visible() and has_words_before() then
+      -- did not work
+      --  cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.jumpable(1) then
@@ -200,6 +203,7 @@ cmp.setup {
           "\\",
           "+",
           "?",
+          "$",
           " ",
           -- "\t",
           -- "\n",
@@ -240,20 +244,14 @@ cmp.setup {
   sorting = {
     priority_weight = 2,
     comparators = {
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
       compare.offset,
       compare.exact,
-      -- compare.scopes,
       compare.score,
       compare.recently_used,
       compare.locality,
-      -- compare.kind,
       compare.sort_text,
       compare.length,
       compare.order,
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
     },
   },
   confirm_opts = {
