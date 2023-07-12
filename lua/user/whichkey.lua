@@ -171,10 +171,10 @@ local mappings = {
 
   s = {
     name = "Session",
-    s = { "<cmd>SaveSession<cr>", "Save" },
-    r = { "<cmd>RestoreSession<cr>", "Restore" },
-    x = { "<cmd>DeleteSession<cr>", "Delete" },
-    f = { "<cmd>Autosession search<cr>", "Find" },
+    s = { "<cmd>SessionSave<cr>", "Save" },
+    r = { "<cmd>SessionRestore<cr>", "Restore" },
+    x = { "<cmd>SessionDelete<cr>", "Delete" },
+    f = { "<cmd>SearchSession<cr>", "Find" },
     d = { "<cmd>Autosession delete<cr>", "Find Delete" },
     -- a = { ":SaveSession<cr>", "test" },
     -- a = { ":RestoreSession<cr>", "test" },
