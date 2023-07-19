@@ -210,7 +210,7 @@ local mappings = {
 
   f = {
     name = "Find",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    b = { "<cmd>lua require('telescope').extensions.bookmarks.bookmarks(opts)<cr>", "find chrome bookmark" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     d = { "<cmd>lua require('browse.devdocs').search_with_filetype()<cr>", "Devdocs.io search filetype" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },

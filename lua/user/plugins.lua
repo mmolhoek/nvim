@@ -156,6 +156,15 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
 
+  -- Chrome bookmarks
+
+  use {
+    "dhruvmanila/browser-bookmarks.nvim",
+    tag = "*",
+    requires = {
+      "nvim-telescope/telescope.nvim",
+    },
+  }
   -- Note Taking
   -- use "mickael-menu/zk-nvim"
 
