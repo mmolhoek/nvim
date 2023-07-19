@@ -19,17 +19,18 @@ local servers = {
   --"solidity_ls",
   -- "sumneko_lua",
   "lua_ls",
-  "tflint", -- terraform
-  "terraformls", -- terraform
+  -- "tflint", -- terraform
+  -- "terraformls", -- terraform
   "tsserver",
-  "pyright",
+  "tailwindcss",
+  -- "pyright",
   "yamlls",
   "bashls",
   -- "clangd",
   -- "rust_analyzer",
   -- "taplo",
   -- "zk@v0.10.1",
-  "lemminx", -- xml lsp
+  -- "lemminx", -- xml lsp
 }
 
 local settings = {
@@ -50,6 +51,7 @@ mason.setup(settings)
 mason_lspconfig.setup {
   ensure_installed = servers,
   automatic_installation = true,
+  automatic_servers_installation = true,
 }
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
