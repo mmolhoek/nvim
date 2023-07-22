@@ -256,6 +256,14 @@ local mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
+    D = {
+      "<cmd>Gitsigns diffthis develop<cr>",
+      "Diff develop",
+    },
+    M = {
+      "<cmd>Gitsigns diffthis master<cr>",
+      "Diff master",
+    },
     G = {
       name = "Gist",
       a = { "<cmd>Gist -b -a<cr>", "Create Anon" },
