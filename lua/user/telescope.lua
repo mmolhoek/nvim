@@ -219,6 +219,7 @@ telescope.setup {
 }
 
 require("telescope").load_extension "bookmarks"
+require("telescope").load_extension "refactoring"
 -- require('telescope').load_extension('ctags_outline')
 
 -- show current buf outline
