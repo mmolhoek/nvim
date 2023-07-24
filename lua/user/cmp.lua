@@ -8,11 +8,6 @@ if not snip_status_ok then
   return
 end
 
---local tabnine_status_ok, _ = pcall(require, "user.tabnine")
---if not tabnine_status_ok then
---  return
---end
-
 local buffer_fts = {
   "markdown",
   "toml",
@@ -33,11 +28,6 @@ local compare = require "cmp.config.compare"
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- local check_backspace = function()
---   local col = vim.fn.col "." - 1
---   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
-
 local check_backspace = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
@@ -48,7 +38,6 @@ local icons = require "user.icons"
 local kind_icons = icons.kind
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
@@ -141,10 +130,6 @@ cmp.setup {
       -- Kind icons
       vim_item.kind = kind_icons[vim_item.kind]
 
-      if entry.source.name == "cmp_tabnine" then
-        vim_item.kind = icons.misc.Robot
-        vim_item.kind_hl_group = "CmpItemKindTabnine"
-      end
       if entry.source.name == "copilot" then
         vim_item.kind = icons.git.Octoface
         vim_item.kind_hl_group = "CmpItemKindCopilot"
@@ -203,7 +188,6 @@ cmp.setup {
           "\\",
           "+",
           "?",
-          "$",
           " ",
           -- "\t",
           -- "\n",
@@ -230,13 +214,12 @@ cmp.setup {
     {
       name = "buffer",
       group_index = 2,
-      filter = function(entry, ctx)
+      filter = function(_, ctx)
         if not contains(buffer_fts, ctx.prev_context.filetype) then
           return true
         end
       end,
     },
-    { name = "cmp_tabnine", group_index = 2 },
     { name = "path", group_index = 2 },
     { name = "emoji", group_index = 2 },
     { name = "lab.quick_data", keyword_length = 4, group_index = 2 },

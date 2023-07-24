@@ -114,7 +114,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
@@ -125,22 +124,19 @@ return packer.startup(function(use)
       require("copilot_cmp").setup()
     end,
   }
-  -- use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- Snippet
   use "L3MON4D3/LuaSnip" --snippet engine
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Syntax/Treesitter
-  -- use { "nvim-treesitter/nvim-treesitter", commit = "4cccb6f494eb255b32a290d37c35ca12584c74d0", run = ":TSUpdate" }
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "nvim-treesitter/nvim-treesitter-textobjects"
-  -- use "wellle/targets.vim"
-  -- use "RRethy/nvim-treesitter-textsubjects"
   use "kylechui/nvim-surround"
   use {
     "abecodes/tabout.nvim",
@@ -165,8 +161,6 @@ return packer.startup(function(use)
       "nvim-telescope/telescope.nvim",
     },
   }
-  -- Note Taking
-  -- use "mickael-menu/zk-nvim"
 
   -- Color
   use "NvChad/nvim-colorizer.lua"
@@ -213,12 +207,6 @@ return packer.startup(function(use)
       "antoinemadec/FixCursorHold.nvim",
     },
   }
-  -- use "theHamsta/nvim-dap-virtual-text"
-  -- use "Pocco81/DAPInstall.nvim"
-
-  -- Tabline
-  -- use "akinsho/bufferline.nvim"
-  -- use "tiagovla/scope.nvim"
 
   -- Statusline
   use "christianchiarulli/lualine.nvim"
@@ -251,13 +239,6 @@ return packer.startup(function(use)
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
 
-  -- Code Runner
-  use "is0n/jaq-nvim"
-  use {
-    "0x100101/lab.nvim",
-    run = "cd js && npm ci",
-  }
-
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "f-person/git-blame.nvim"
@@ -274,13 +255,11 @@ return packer.startup(function(use)
   use "nacro90/numb.nvim"
   use "andymass/vim-matchup"
   use "folke/zen-mode.nvim"
-  -- use "Pocco81/true-zen.nvim"
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
 
   -- Motion
   use "phaazon/hop.nvim"
-  -- use "jinh0/eyeliner.nvim"
 
   -- Keybinding
   use "folke/which-key.nvim"
@@ -306,36 +285,6 @@ return packer.startup(function(use)
   use "junegunn/vim-easy-align"
 
   use "michaelb/vim-tips"
-
-  -- Graveyard
-  -- use "romgrk/nvim-treesitter-context"
-  -- use "mizlan/iswap.nvim"
-  -- use {'christianchiarulli/nvim-ts-rainbow'}
-  -- use "nvim-telescope/telescope-ui-select.nvim"
-  -- use "nvim-telescope/telescope-file-browser.nvim"
-  -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
-  -- use { "christianchiarulli/JABS.nvim" }
-  -- use "lunarvim/vim-solidity"
-  -- use "tpope/vim-repeat"
-  -- use "Shatur/neovim-session-manager"
-  -- use "metakirby5/codi.vim"
-  -- use { "nyngwang/NeoZoom.lua", branch = "neo-zoom-original" }
-  -- use "rcarriga/cmp-dap"
-  -- use "filipdutescu/renamer.nvim"
-  -- use "https://github.com/rhysd/conflict-marker.vim"
-  -- use "rebelot/kanagawa.nvim"
-  -- use "unblevable/quick-scope"
-  -- use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  -- use "gbprod/cutlass.nvim"
-  -- use "christianchiarulli/lsp-inlay-hints"
-  -- use "rmagatti/goto-preview"
-  -- use "stevearc/aerial.nvim"
-  -- use "nvim-lua/lsp_extensions.nvim"
-  -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
-  -- use "stevearc/stickybuf.nvim"
-  -- use "drybalka/tree-climber.nvim"
-  -- use "phaazon/hop.nvim"
-  -- use { "michaelb/sniprun", run = "bash ./install.sh" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
