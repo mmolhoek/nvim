@@ -38,6 +38,7 @@ local icons = require "user.icons"
 local kind_icons = icons.kind
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindScss", { fg = "#0165ff" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
@@ -135,6 +136,11 @@ cmp.setup {
         vim_item.kind_hl_group = "CmpItemKindCopilot"
       end
 
+      if entry.source.name == "scss" then
+        vim_item.kind = icons.type.Object
+        vim_item.kind_hl_group = "CmpItemKindScss"
+      end
+
       if entry.source.name == "emoji" then
         vim_item.kind = icons.misc.Smiley
         vim_item.kind_hl_group = "CmpItemKindEmoji"
@@ -221,6 +227,7 @@ cmp.setup {
       end,
     },
     { name = "path", group_index = 2 },
+    { name = "scss", group_index = 1, option = { folders = { "node_modules/@dnr-ui/tokens/scss" } } },
     { name = "emoji", group_index = 2 },
     { name = "lab.quick_data", keyword_length = 4, group_index = 2 },
   },
