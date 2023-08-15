@@ -17,8 +17,6 @@ dressing.setup {
     -- When true, <Esc> will close the modal
     insert_only = true,
 
-    -- These are passed to nvim_open_win
-    anchor = "SW",
     border = "rounded",
     -- 'editor' and 'win' will default to being centered
     relative = "cursor",
@@ -32,15 +30,18 @@ dressing.setup {
     min_width = { 20, 0.2 },
 
     win_options = {
-    -- Window transparency (0-100)
-        winblend = 10,
-    -- Change default highlight groups (see :help winhl)
-    winhighlight = "",
+      -- Window transparency (0-100)
+      winblend = 10,
+      -- Change default highlight groups (see :help winhl)
+      winhighlight = "",
     },
 
     override = function(conf)
       -- This is the config that will be passed to nvim_open_win.
       -- Change values here to customize the layout
+      -- add anchore to conf
+
+      conf.anchor = "SW"
       return conf
     end,
 
@@ -87,7 +88,6 @@ dressing.setup {
     -- Options for built-in selector
     builtin = {
       -- These are passed to nvim_open_win
-      anchor = "NW",
       border = "rounded",
       -- 'editor' and 'win' will default to being centered
       relative = "editor",
@@ -112,6 +112,7 @@ dressing.setup {
       override = function(conf)
         -- This is the config that will be passed to nvim_open_win.
         -- Change values here to customize the layout
+        conf.anchor = "SW"
         return conf
       end,
     },
