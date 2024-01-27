@@ -1,15 +1,15 @@
 vim.g.python3_host_prog = "/Users/molhoe000/.pyenv/shims/python"
 vim.o.relativenumber = true
 vim.g.markdown_fenced_languages = { "javascript", "typescript", "css", "html" }
--- local options = { noremap = true }
+local options = { noremap = true }
 vim.g.tags = "tags"
 
--- make pressing jk and kj be escape so your findgers do not move from keyboard
--- vim.keymap.set("i", "jk", "<Esc>", options)
--- vim.keymap.set("i", "kj", "<Esc>", options)
--- make pressing df and fd be Backspace to remove typo (not sure if this workd yet)
--- vim.keymap.set("i", "df", "<Bs>", options)
--- vim.keymap.set("i", "fd", "<Bs>", options)
+-- changing the arrow keys to be 'jkl;', to be the same as the aurora sweep keyboard's arrow keys
+vim.keymap.set("n", "j", "<Left>", options)
+vim.keymap.set("n", "k", "<Down>", options)
+vim.keymap.set("n", "l", "<Up>", options)
+vim.keymap.set("n", ";", "<Right>", options)
+
 require "user.hot-reload"
 require "user.keymaps"
 require "user.plugins"
