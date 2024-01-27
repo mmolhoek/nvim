@@ -2,9 +2,10 @@ local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
   return
 end
-
 -- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
 -- ft_to_parser.motoko = "typescript"
+vim.g.skip_ts_context_commentstring_module = true
+require("ts_context_commentstring").setup {}
 
 configs.setup {
   ensure_installed = "all", -- one of "all" or a list of languages
@@ -28,10 +29,12 @@ configs.setup {
     enable = true,
   },
   indent = { enable = true, disable = { "python", "css", "rust" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
+  --context_commentstring nvim-treesitter module is deprecated, use require('ts_context_commentstring').setup {} and set vim.g.skip_ts_context_commentstring_module = true to speed up loading instead.
+
+  -- context_commentstring = {
+  --   enable = true,
+  --   enable_autocmd = false,
+  -- },
   autotag = {
     enable = true,
     disable = { "xml", "markdown" },
