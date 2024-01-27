@@ -97,6 +97,9 @@ end
 
 nvim_tree.setup {
   on_attach = on_attach,
+  view = {
+    width = 80,
+  },
   hijack_directories = {
     enable = false,
   },
@@ -111,6 +114,7 @@ nvim_tree.setup {
   --   "alpha",
   -- },
   filters = {
+    dotfiles = false,
     custom = { ".git" },
     exclude = { ".gitignore" },
   },
@@ -134,7 +138,7 @@ nvim_tree.setup {
     highlight_opened_files = "none",
     root_folder_modifier = ":t",
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = "└ ",
         edge = "│ ",
