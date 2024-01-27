@@ -39,6 +39,13 @@ keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- cmd - right/left arrow to move cursor to the next window
+keymap("n", "<M-Right>", "<C-w>p", opts)
+keymap("n", "<M-Left>", "<C-w>w", opts)
+keymap("n", "<M-Up>", "<C-w>k", opts)
+keymap("n", "<M-Down>", "<C-w>j", opts)
+-- Redo mapped to U
+keymap("n", "U", "<C-R>", opts)
 
 -- I hate typing these
 -- keymap("n", "H", "^", opts)
